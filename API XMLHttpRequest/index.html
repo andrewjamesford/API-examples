@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>HTML API Demo</title>
+
+</head>
+
+<body>
+  <h1>Number Facts</hl>
+    <p>Enter a number to get a fun fact:</p>
+    <input type="text" id="num" />
+    <input type="button" value="submit" onclick="getFact()" />
+    <p id="display">Find the fun fact here!</p>
+    <script>
+      function getFact() {
+        const xhr = new XMLHttpRequest();
+        const num = document.getElementById("num").value;
+
+        xhr.open('GET', 'http://numbersapi.com/' + num + '?json', true);
+        xhr.onload = function (xhr) {
+          if (xhr.status === 200) {
+            console.log(xhr.response);
+            console.log(xhr.responseText);
+          }
+
+          const res = JSON.parse(this.responseText);
+          document.getElementById("display").innerHTML = res.text;
+        }
+        xhr.send();
+
+      }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>API fetch callback</title>
+</head>
+
+<body>
+  <h1>Numbers API Example</h1>
+  <p>Click the button to fetch a random fact about a number:</p>
+  <button id="fetchButton">Fetch Random Fact</button>
+  <p id="fact"></p>
+
+  <script>
+    const fetchButton = document.getElementById('fetchButton');
+    const factElement = document.getElementById('fact');
+
+    fetchButton.addEventListener('click', () => {
+      fetch('http://numbersapi.com/random')
+        .then(response => response.text())
+        .then(data => {
+          console.log(data)
+          factElement.textContent = data;
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });  
+    });
+
+  </script>
+
+</body>
+
+</html>
